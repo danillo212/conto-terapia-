@@ -129,9 +129,14 @@
     }
 
     async function pagarPix() {
-      const nome = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const telefone = document.getElementById('phone').value;
+      const nome = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefone = document.getElementById('phone').value.trim();
+
+      if (!nome || !email || !telefone) {
+        alert('Preencha todos os campos antes de continuar.');
+        return;
+      }
 
       enviarParaWhatsApp(nome, email, telefone);
 
@@ -147,7 +152,11 @@
             payment_method_id: 'pix',
             payer: {
               email: email,
-              first_name: nome
+              first_name: nome,
+              identification: {
+                type: 'CPF',
+                number: '12345678909' // CPF fictício válido para testes
+              }
             }
           })
         });
@@ -160,8 +169,8 @@
           document.getElementById('pix-code').value = data.point_of_interaction.transaction_data.qr_code;
           document.getElementById('pix-section').style.display = 'flex';
         } else {
-          alert('Erro ao gerar o Pix. Verifique os dados e tente novamente.');
-          console.error('Erro ao gerar PIX:', data);
+          alert('Erro ao gerar o Pix. Verifique os dados ou tente novamente mais tarde.');
+          console.error('Detalhes do erro:', data);
         }
       } catch (error) {
         alert('Erro na comunicação com o Mercado Pago.');
