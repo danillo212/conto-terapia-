@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Checkout Contoterapia</title>
   <style>
     body {
@@ -153,6 +153,7 @@
         });
 
         const data = await response.json();
+        console.log('Resposta do Pix:', data);
 
         if (data.point_of_interaction && data.point_of_interaction.transaction_data) {
           document.getElementById('qr-code').src = data.point_of_interaction.transaction_data.qr_code_base64;
