@@ -64,6 +64,8 @@
     .qr {
       width: 200px;
       height: 200px;
+      border: 1px solid #ddd;
+      border-radius: 1rem;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -81,19 +83,20 @@
     <input type="tel" id="phone" placeholder="Seu WhatsApp" required />
 
     <button type="button" onclick="pagarCartao()">Pagar com Cartão - R$ 189,90</button>
-    <button type="button" onclick="pagarPix()">Pagar com Pix - R$ 139,90</button>
+    <button type="button" onclick="mostrarPix()">Pagar com Pix - R$ 139,90</button>
 
     <div id="pix-section">
-      <img id="qr-code" class="qr" src="" alt="QR Code Pix" />
-      <input type="text" id="pix-code" readonly />
+      <p>Escaneie o QR Code abaixo ou copie a chave Pix:</p>
+      <img id="qr-code" class="qr" src="https://i.ibb.co/W56vncg/pix-gerli.png" alt="QR Code Pix Gerli" />
+      <input type="text" id="pix-code" value="46988252892" readonly />
     </div>
   </form>
 
   <script>
     const ACCESS_TOKEN = 'APP_USR-2860911244778014-040510-a592d9a7cbef34f72ccf3b8949dec7ca-2367760246';
 
-    function enviarParaWhatsApp(nome, email, telefone) {
-      const mensagem = `Nova inscrição no Checkout Terapêutico:%0A🧘 Nome: ${nome}%0A📧 Email: ${email}%0A📱 WhatsApp: ${telefone}`;
+    function enviarParaWhatsApp(nome, email, telefone, tipo) {
+      const mensagem = `Nova inscrição no Checkout Terapêutico:%0A🧘 Nome: ${nome}%0A📧 Email: ${email}%0A📱 WhatsApp: ${telefone}%0A💳 Método: ${tipo}`;
       window.open(`https://wa.me/5546988252892?text=${mensagem}`, '_blank');
     }
 
@@ -102,7 +105,7 @@
       const email = document.getElementById('email').value;
       const telefone = document.getElementById('phone').value;
 
-      enviarParaWhatsApp(nome, email, telefone);
+      enviarParaWhatsApp(nome, email, telefone, "Cartão de Crédito");
 
       const preference = await fetch('https://api.mercadopago.com/checkout/preferences', {
         method: 'POST',
@@ -128,7 +131,7 @@
       window.location.href = preference.init_point;
     }
 
-    async function pagarPix() {
+    function mostrarPix() {
       const nome = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const telefone = document.getElementById('phone').value.trim();
@@ -138,44 +141,9 @@
         return;
       }
 
-      enviarParaWhatsApp(nome, email, telefone);
+      enviarParaWhatsApp(nome, email, telefone, "Pix");
 
-      try {
-        const response = await fetch('https://api.mercadopago.com/v1/payments', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${ACCESS_TOKEN}`
-          },
-          body: JSON.stringify({
-            transaction_amount: 139.90,
-            payment_method_id: 'pix',
-            payer: {
-              email: email,
-              first_name: nome,
-              identification: {
-                type: 'CPF',
-                number: '12345678909' // CPF fictício válido para testes
-              }
-            }
-          })
-        });
-
-        const data = await response.json();
-        console.log('Resposta do Pix:', data);
-
-        if (data.point_of_interaction && data.point_of_interaction.transaction_data) {
-          document.getElementById('qr-code').src = data.point_of_interaction.transaction_data.qr_code_base64;
-          document.getElementById('pix-code').value = data.point_of_interaction.transaction_data.qr_code;
-          document.getElementById('pix-section').style.display = 'flex';
-        } else {
-          alert('Erro ao gerar o Pix. Verifique os dados ou tente novamente mais tarde.');
-          console.error('Detalhes do erro:', data);
-        }
-      } catch (error) {
-        alert('Erro na comunicação com o Mercado Pago.');
-        console.error('Erro geral:', error);
-      }
+      document.getElementById('pix-section').style.display = 'flex';
     }
   </script>
 </body>
