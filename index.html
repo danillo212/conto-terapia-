@@ -1,152 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout Terapêutico</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Quicksand', sans-serif;
-        background: #fff0f5;
-        color: #5c3d4f;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        min-height: 100vh;
-      }
-      .container {
-        background: #ffffff;
-        padding: 2rem;
-        border-radius: 16px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        max-width: 420px;
-        margin: 3rem 1rem;
-        text-align: center;
-        position: relative;
-      }
-      h1 {
-        font-size: 1.6rem;
-        margin-bottom: 0.5rem;
-        animation: fadeIn 1s ease;
-      }
-      p.sub {
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem;
-        color: #8d4c66;
-      }
-      form input {
-        width: 100%;
-        padding: 0.75rem;
-        margin: 0.5rem 0;
-        border: 1px solid #e3c2cc;
-        border-radius: 8px;
-      }
-      .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1.5rem;
-      }
-      .btn {
-        padding: 0.75rem;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: background 0.3s;
-      }
-      .btn-pix {
-        background: #f06292;
-        color: white;
-      }
-      .btn-cartao {
-        background: #ba68c8;
-        color: white;
-      }
-      .btn:hover {
-        filter: brightness(1.1);
-      }
-      .qr-container {
-        display: none;
-        margin-top: 1rem;
-      }
-      .footer {
-        margin-top: 2rem;
-        font-size: 0.85rem;
-        color: #7a5162;
-        text-align: center;
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Bem-vinda ao seu momento de cura</h1>
-      <p class="sub">Com carinho, Gerli D. Dalberto 🦋<br>"A transformação começa no primeiro passo."</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout Terapêutico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffe4ec, #fbefff);
+      margin: 0;
+      padding: 2rem;
+      color: #4b2e2e;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: #d17b9f;
+    }
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #4b2e2e;
+    }
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.7rem;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: #e288b4;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #cf72a0;
+    }
+    .pix-section {
+      margin-top: 2rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ Bem-vinda ao seu momento de cura</h1>
+    <h2>Com carinho, Gerli D. Dalberto🦋<br>"A transformação começa no primeiro passo."</h2>
 
-      <form id="checkout-form">
-        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
-        <input type="email" id="email" name="email" placeholder="Seu e-mail" required />
-        <input type="tel" id="telefone" name="telefone" placeholder="Seu telefone" required />
+    <input type="text" id="nome" placeholder="Seu nome completo" required>
+    <input type="email" id="email" placeholder="Seu e-mail" required>
+    <input type="tel" id="telefone" placeholder="Seu WhatsApp" required>
 
-        <div class="buttons">
-          <button type="button" class="btn btn-pix" onclick="pagarPix()">Pagar com Pix (R$139,90)</button>
-          <button type="button" class="btn btn-cartao" onclick="pagarCartao()">Pagar com Cartão (R$189,90)</button>
-        </div>
-      </form>
+    <button onclick="pagarCartao()">Pagar com Cartão (R$ 189,90)</button>
 
-      <div class="qr-container" id="qr-pix">
-        <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=00020126410014br.gov.bcb.pix0111469882528925204000053039865405139.905802BR5921Gerli Diane Dalberto6009SAO PAULO622905251XH9BezybF6304F4F3" alt="QR Code Pix" width="200">
-        <p>Chave Pix: <strong>46988252892</strong></p>
-        <p>Código copia e cola:</p>
-        <textarea rows="3" style="width:100%">00020126410014br.gov.bcb.pix0111469882528925204000053039865405139.905802BR5921Gerli Diane Dalberto6009SAO PAULO622905251XH9BezybF6304F4F3</textarea>
-      </div>
-
-      <div class="footer">
-        © 2025 Gerli D. Dalberto. Todos os direitos reservados.
-      </div>
+    <div class="pix-section">
+      <h2>Ou pague com Pix (R$ 139,90)</h2>
+      <img src="https://gerarqrcodepix.com.br/api/v1?nome=Gerli+Diane+Dalberto&cidade=JUINA&valor=139.90&chave=46988252892&info=4+Sessoes+de+Contoterapia" 
+           alt="QR Code Pix" style="width: 220px; border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <p style="margin: 1rem 0 0.5rem">Ou copie e cole:</p>
+      <code id="pix-code" style="display: block; background: #f8f8f8; padding: 1rem; border-radius: 1rem; word-break: break-word; font-size: 0.9rem;">00020126580014BR.GOV.BCB.PIX0146946988252892520400005303986540139.905802BR5917Gerli D Dalberto6005JUINA62070503***6304</code>
+      <button style="margin-top: 0.5rem;" onclick="copiarPix()">Copiar código Pix</button>
     </div>
+  </div>
 
-    <script>
-      function enviarWhatsApp(nome, telefone, email) {
-        const msg = `Nova cliente no checkout!%0A%0ANome: ${nome}%0ATelefone: ${telefone}%0AEmail: ${email}`;
-        const url = `https://wa.me/5546988252892?text=${msg}`;
-        window.open(url, '_blank');
-      }
+  <script>
+    function copiarPix() {
+      const texto = document.getElementById("pix-code").textContent;
+      navigator.clipboard.writeText(texto).then(() => alert("Código Pix copiado com sucesso!"));
+    }
 
-      function pagarPix() {
-        const nome = document.getElementById('nome').value;
-        const telefone = document.getElementById('telefone').value;
-        const email = document.getElementById('email').value;
+    function pagarCartao() {
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const telefone = document.getElementById("telefone").value;
+      const mensagem = `Nova compra no checkout terapêutico!\nNome: ${nome}\nEmail: ${email}\nWhatsApp: ${telefone}`;
+      const numero = '5546988252892';
+      const link = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(mensagem)}`;
+      window.open(link, '_blank');
 
-        if (nome && telefone && email) {
-          enviarWhatsApp(nome, telefone, email);
-          document.getElementById('qr-pix').style.display = 'block';
-        } else {
-          alert("Por favor, preencha todos os dados antes de prosseguir.");
-        }
-      }
-
-      function pagarCartao() {
-        const nome = document.getElementById('nome').value;
-        const telefone = document.getElementById('telefone').value;
-        const email = document.getElementById('email').value;
-
-        if (nome && telefone && email) {
-          enviarWhatsApp(nome, telefone, email);
-          window.location.href = 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2367760246-bc3df928-c93b-4b59-af02-8c431cceae19';
-        } else {
-          alert("Por favor, preencha todos os dados antes de prosseguir.");
-        }
-      }
-    </script>
-  </body>
+      // Redirecionar para Mercado Pago
+      window.location.href = "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2367760246-bc3df928-c93b-4b59-af02-8c431cceae19";
+    }
+  </script>
+</body>
 </html>
