@@ -1,193 +1,133 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout Terapêutico - Contoterapia</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Terapêutico</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #fff6f9, #fefefe);
-      color: #444;
       margin: 0;
-      padding: 0;
-      text-align: center;
-      overflow-x: hidden;
-    }
-
-    header {
-      padding: 2rem 1rem 1rem;
-      animation: slideDown 1.2s ease-out;
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      color: #c96c9c;
-      animation: fadeIn 1.8s ease-in-out;
-    }
-
-    header p {
-      font-size: 1rem;
-      color: #666;
-      margin-top: 0.5rem;
-      animation: fadeIn 2.2s ease-in-out;
-    }
-
-    form {
-      max-width: 400px;
-      margin: 1rem auto;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      animation: fadeInUp 1.5s ease-in-out;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ddd;
-      border-radius: 0.75rem;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      animation: fadeIn 1.4s ease-in;
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      border-color: #c96c9c;
-      box-shadow: 0 0 0 2px rgba(201, 108, 156, 0.1);
-    }
-
-    button {
-      padding: 0.75rem;
-      width: 100%;
-      margin-top: 1rem;
-      border: none;
-      border-radius: 2rem;
-      background-color: #c96c9c;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s ease;
-      animation: fadeIn 1.6s ease-in-out;
-    }
-
-    button:hover {
-      background-color: #a74f7f;
-      transform: scale(1.02);
-    }
-
-    .pix-box {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 1.5rem;
-      animation: fadeIn 1s ease-in;
-    }
-
-    .pix-card {
-      background: #fff0f5;
-      padding: 1.5rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 0 10px rgba(255,192,203,0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      text-align: center;
-      max-width: 350px;
-      width: 100%;
-      animation: zoomIn 0.8s ease-in-out;
-    }
-
-    .qr {
-      width: 180px;
-      height: 180px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f7f6;
+      color: #5a4a42;
+      animation: fadeIn 1.5s ease-in;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-40px); }
-      to { opacity: 1; transform: translateY(0); }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    h1 {
+      font-size: 24px;
+      color: #d1778f;
     }
 
-    @keyframes zoomIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #e89aa6;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #d1778f;
+    }
+
+    .pix-box {
+      background-color: #ffeef3;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    .qr-img {
+      max-width: 200px;
+      margin: 10px auto;
+    }
+
+    .copy-info {
+      font-size: 12px;
+      color: #888;
+      margin-top: 5px;
     }
   </style>
 </head>
+
 <body>
+  <div class="container">
+    <h1>✨ Pagamento Terapêutico ✨</h1>
+    <p>Bem-vinda ao seu momento de cura 💖</p>
+    <p><strong>Com carinho, Gerli D. Dalberto 🦋<br>A transformação começa no primeiro passo.</strong></p>
 
-  <header>
-    <h1>✨ Bem-vinda ao seu momento de cura ✨</h1>
-    <p>Com carinho, Gerli D. Dalberto 🦋 A transformação começa no primeiro passo.</p>
-  </header>
+    <button onclick="pagarCartao()">💳 Pagar com Cartão (R$ 189,90)</button>
+    <button onclick="mostrarPix()">🔑 Pagar com Pix (R$ 139,90)</button>
 
-  <form onsubmit="enviarWhatsApp(event)">
-    <input type="text" id="nome" placeholder="Seu nome completo" required />
-    <input type="email" id="email" placeholder="Seu e-mail" required />
-    <input type="tel" id="telefone" placeholder="Seu WhatsApp" required />
-    <select id="pagamento" onchange="mostrarFormaPagamento()" required>
-      <option value="">Selecione a forma de pagamento</option>
-      <option value="cartao">Cartão de Crédito (R$189,90)</option>
-      <option value="pix">Pix (R$139,90)</option>
-    </select>
-
-    <div id="pix-section" class="pix-box">
-      <h3>✨ Pagamento via Pix ✨</h3>
-      <div class="pix-card">
-        <p>Escaneie o QR Code abaixo:</p>
-        <img id="qr-code" class="qr" src="https://i.ibb.co/W56vncg/pix-gerli.png" alt="QR Code Pix Gerli" />
-        <p>Ou copie a chave Pix:</p>
-        <input type="text" id="pix-code" value="46988252892" readonly onclick="this.select()" />
-        <small>(Clique para copiar)</small>
-      </div>
+    <div id="pixBox" class="pix-box" style="display: none;">
+      <h2>✨ Pagamento via Pix ✨</h2>
+      <p>Escaneie o QR Code abaixo:</p>
+      <img class="qr-img" src="https://i.ibb.co/G0Dmv1s/qrcode-pix-gerli.png" alt="QR Code Pix">
+      <p>Ou copie a chave Pix:</p>
+      <input type="text" value="46988252892" id="chavePix" readonly>
+      <button onclick="copiarChave()">📋 Copiar Chave Pix</button>
+      <div class="copy-info" id="copyStatus"></div>
     </div>
-
-    <div id="botao-cartao" style="display:none;">
-      <button type="button" onclick="pagarCartao()">Pagar com Cartão</button>
-    </div>
-
-    <button type="submit">Enviar meus dados no WhatsApp</button>
-  </form>
+  </div>
 
   <script>
-    function mostrarFormaPagamento() {
-      const pagamento = document.getElementById('pagamento').value;
-      document.getElementById('pix-section').style.display = pagamento === 'pix' ? 'flex' : 'none';
-      document.getElementById('botao-cartao').style.display = pagamento === 'cartao' ? 'block' : 'none';
+    function mostrarPix() {
+      document.getElementById("pixBox").style.display = "block";
     }
 
-    function enviarWhatsApp(e) {
-      e.preventDefault();
-      const nome = document.getElementById("nome").value;
-      const email = document.getElementById("email").value;
-      const telefone = document.getElementById("telefone").value;
-      const pagamento = document.getElementById("pagamento").value;
-
-      const mensagem = `Olá Gerli! 💖\n\nQuero fazer a contoterapia!\n\nNome: ${nome}\nE-mail: ${email}\nWhatsApp: ${telefone}\nForma de pagamento: ${pagamento.toUpperCase()}`;
-      const url = `https://wa.me/5546988252892?text=${encodeURIComponent(mensagem)}`;
-
-      window.open(url, "_blank");
+    function copiarChave() {
+      const chave = document.getElementById("chavePix");
+      chave.select();
+      document.execCommand("copy");
+      document.getElementById("copyStatus").innerText = "Chave Pix copiada com sucesso!";
     }
 
     function pagarCartao() {
-      const linkPagamento = "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=replace_with_preference_id";
-      window.open(linkPagamento, "_blank");
+      const preferenceId = "APP_USR-2860911244778014-040510-a592d9a7cbef34f72ccf3b8949dec7ca-2367760246";
+      const redirectUrl = `https://www.mercadopago.com.br/checkout/v1/redirect?preference-id=${preferenceId}`;
+      window.location.href = redirectUrl;
     }
   </script>
-
 </body>
+
 </html>
