@@ -12,32 +12,35 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      overflow-x: hidden;
     }
 
     header {
       padding: 2rem 1rem 1rem;
-      animation: fadeInDown 1s ease-out;
+      animation: slideDown 1.2s ease-out;
     }
 
     header h1 {
       font-size: 1.8rem;
       color: #c96c9c;
+      animation: fadeIn 1.8s ease-in-out;
     }
 
     header p {
       font-size: 1rem;
       color: #666;
       margin-top: 0.5rem;
+      animation: fadeIn 2.2s ease-in-out;
     }
 
     form {
       max-width: 400px;
-      margin: 0 auto;
+      margin: 1rem auto;
       background: #fff;
       padding: 2rem;
       border-radius: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1.2s ease-in-out;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      animation: fadeInUp 1.5s ease-in-out;
     }
 
     input, select {
@@ -47,6 +50,14 @@
       border: 1px solid #ddd;
       border-radius: 0.75rem;
       font-size: 1rem;
+      transition: all 0.3s ease;
+      animation: fadeIn 1.4s ease-in;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #c96c9c;
+      box-shadow: 0 0 0 2px rgba(201, 108, 156, 0.1);
     }
 
     button {
@@ -59,11 +70,13 @@
       color: white;
       font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: transform 0.2s ease, background 0.3s ease;
+      animation: fadeIn 1.6s ease-in-out;
     }
 
     button:hover {
       background-color: #a74f7f;
+      transform: scale(1.02);
     }
 
     .pix-box {
@@ -71,7 +84,7 @@
       flex-direction: column;
       align-items: center;
       margin-top: 1.5rem;
-      animation: fadeIn 0.6s ease-in;
+      animation: fadeIn 1s ease-in;
     }
 
     .pix-card {
@@ -86,6 +99,7 @@
       text-align: center;
       max-width: 350px;
       width: 100%;
+      animation: zoomIn 0.8s ease-in-out;
     }
 
     .qr {
@@ -94,13 +108,23 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -160,8 +184,7 @@
     }
 
     function pagarCartao() {
-      const preferenceId = "replace_with_your_preference_id"; // ← Substitua aqui se usar checkout básico
-      const linkPagamento = "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=replace_with_preference_id"; // ou Checkout Pro se tiver
+      const linkPagamento = "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=replace_with_preference_id";
       window.open(linkPagamento, "_blank");
     }
   </script>
