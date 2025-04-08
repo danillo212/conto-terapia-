@@ -2,214 +2,173 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout Terapêutico - Contoterapia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout Terapêutico</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #fff6f9, #fefefe);
-      color: #444;
+      background-color: #fff6f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 30px;
       margin: 0;
-      padding: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #c54d84;
       text-align: center;
-      overflow-x: hidden;
+      animation: fadeIn 1s ease-in-out;
     }
 
-    header {
-      padding: 2rem 1rem 1rem;
-      animation: slideDown 1.2s ease-out;
+    .subtext {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
-    header h1 {
-      font-size: 1.8rem;
-      color: #c96c9c;
-      animation: fadeIn 1.8s ease-in-out;
-    }
-
-    header p {
-      font-size: 1rem;
-      color: #666;
-      margin-top: 0.5rem;
-      animation: fadeIn 2.2s ease-in-out;
-    }
-
-    form {
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       max-width: 400px;
-      margin: 1rem auto;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      animation: fadeInUp 1.5s ease-in-out;
+      width: 100%;
+      text-align: center;
     }
 
     input, select {
       width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ddd;
-      border-radius: 0.75rem;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      animation: fadeIn 1.4s ease-in;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
     }
 
-    input:focus, select:focus {
-      outline: none;
-      border-color: #c96c9c;
-      box-shadow: 0 0 0 2px rgba(201, 108, 156, 0.1);
-    }
-
-    button {
-      padding: 0.75rem;
-      width: 100%;
-      margin-top: 1rem;
-      border: none;
-      border-radius: 2rem;
-      background-color: #c96c9c;
+    .button {
+      background-color: #c54d84;
       color: white;
-      font-size: 1rem;
+      border: none;
+      padding: 14px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s ease;
-      animation: fadeIn 1.6s ease-in-out;
-    }
-
-    button:hover {
-      background-color: #a74f7f;
-      transform: scale(1.02);
-    }
-
-    .pix-box {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 1.5rem;
-      animation: fadeIn 1s ease-in;
-    }
-
-    .pix-card {
-      background: #fff0f5;
-      padding: 1.5rem;
-      border-radius: 1.5rem;
-      box-shadow: 0 0 10px rgba(255,192,203,0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      text-align: center;
-      max-width: 350px;
+      margin-top: 10px;
+      font-size: 16px;
+      transition: 0.3s ease;
       width: 100%;
-      animation: zoomIn 0.8s ease-in-out;
     }
 
-    .qr {
-      width: 180px;
-      height: 180px;
+    .button:hover {
+      background-color: #a53d6c;
     }
 
-    .copiado {
-      color: green;
-      font-size: 0.9rem;
+    .pix-section {
+      margin-top: 20px;
+      background-color: #ffeaf1;
+      border-radius: 16px;
+      padding: 20px;
       display: none;
-      animation: fadeIn 1s ease-in;
+    }
+
+    .copy-button {
+      background-color: #c54d84;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 25px;
+      width: 100%;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .copy-message {
+      display: none;
+      color: green;
+      margin-top: 10px;
+      font-size: 14px;
+      animation: fadeIn 0.5s ease-in-out;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-40px); }
+      from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
+  <h1>✨ Bem-vinda ao seu momento de cura ✨</h1>
+  <p class="subtext">Com carinho, Gerli D. Dalberto 🦋 A transformação começa no primeiro passo.</p>
 
-  <header>
-    <h1>✨ Bem-vinda ao seu momento de cura ✨</h1>
-    <p>Com carinho, Gerli D. Dalberto 🦋 A transformação começa no primeiro passo.</p>
-  </header>
-
-  <form onsubmit="enviarWhatsApp(event)">
-    <input type="text" id="nome" placeholder="Seu nome completo" required />
-    <input type="email" id="email" placeholder="Seu e-mail" required />
-    <input type="tel" id="telefone" placeholder="Seu WhatsApp" required />
-    <select id="pagamento" onchange="mostrarFormaPagamento()" required>
+  <div class="form-container">
+    <input type="text" id="nome" placeholder="Seu nome completo" />
+    <input type="email" id="email" placeholder="Seu e-mail" />
+    <input type="text" id="whatsapp" placeholder="Seu WhatsApp" />
+    
+    <select id="pagamento" onchange="exibirOpcaoPagamento()">
       <option value="">Selecione a forma de pagamento</option>
       <option value="cartao">Cartão de Crédito (R$189,90)</option>
       <option value="pix">Pix (R$139,90)</option>
     </select>
 
-    <div id="pix-section" class="pix-box">
+    <!-- Botão WhatsApp -->
+    <button class="button" onclick="enviarParaWhatsApp()">Enviar meus dados no WhatsApp</button>
+
+    <!-- Botão de pagamento com cartão -->
+    <button class="button" id="botaoCartao" style="display:none;" onclick="pagarComCartao()">Pagar com Cartão</button>
+
+    <!-- Área do Pix -->
+    <div id="areaPix" class="pix-section">
       <h3>✨ Pagamento via Pix ✨</h3>
-      <div class="pix-card">
-        <p>Use a chave Pix abaixo para realizar o pagamento:</p>
-        <div style="display: flex; gap: 0.5rem; align-items: center; justify-content: center; width: 100%;">
-          <input type="text" id="pix-code" value="46988252892" readonly style="flex: 1; padding: 0.5rem; border-radius: 0.75rem; border: 1px solid #ccc;" />
-          <button type="button" onclick="copiarChavePix()" style="padding: 0.5rem 1rem; border: none; background-color: #c96c9c; color: white; border-radius: 1rem; cursor: pointer;">Copiar</button>
-        </div>
-        <small id="copiado-feedback" class="copiado">Chave copiada com sucesso! 💜</small>
-      </div>
+      <p>Use a chave Pix abaixo para realizar o pagamento:</p>
+      <input type="text" id="chavePix" value="46988252892" readonly />
+      <button class="copy-button" onclick="copiarChavePix()">Copiar</button>
+      <p class="copy-message" id="mensagemCopiado">✅ Chave Pix copiada com sucesso!</p>
     </div>
-
-    <div id="botao-cartao" style="display:none;">
-      <button type="button" onclick="pagarCartao()">Pagar com Cartão</button>
-    </div>
-
-    <button type="submit">Enviar meus dados no WhatsApp</button>
-  </form>
+  </div>
 
   <script>
-    function mostrarFormaPagamento() {
-      const pagamento = document.getElementById('pagamento').value;
-      document.getElementById('pix-section').style.display = pagamento === 'pix' ? 'flex' : 'none';
-      document.getElementById('botao-cartao').style.display = pagamento === 'cartao' ? 'block' : 'none';
-    }
-
-    function enviarWhatsApp(e) {
-      e.preventDefault();
-      const nome = document.getElementById("nome").value;
-      const email = document.getElementById("email").value;
-      const telefone = document.getElementById("telefone").value;
-      const pagamento = document.getElementById("pagamento").value;
-
-      const mensagem = `Olá Gerli! 💖\n\nQuero fazer a contoterapia!\n\nNome: ${nome}\nE-mail: ${email}\nWhatsApp: ${telefone}\nForma de pagamento: ${pagamento.toUpperCase()}`;
-      const url = `https://wa.me/5546988252892?text=${encodeURIComponent(mensagem)}`;
-
-      window.open(url, "_blank");
-    }
-
-    function pagarCartao() {
-      const linkPagamento = "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2367760246-5b7eb243-2b49-4e52-9838-12aa62ce767b";
-      window.open(linkPagamento, "_blank");
+    function exibirOpcaoPagamento() {
+      const forma = document.getElementById("pagamento").value;
+      document.getElementById("botaoCartao").style.display = forma === "cartao" ? "block" : "none";
+      document.getElementById("areaPix").style.display = forma === "pix" ? "block" : "none";
     }
 
     function copiarChavePix() {
-      const input = document.getElementById("pix-code");
-      input.select();
-      input.setSelectionRange(0, 99999);
+      const chavePix = document.getElementById("chavePix");
+      chavePix.select();
+      chavePix.setSelectionRange(0, 99999);
       document.execCommand("copy");
 
-      const feedback = document.getElementById("copiado-feedback");
-      feedback.style.display = "block";
-
+      const mensagem = document.getElementById("mensagemCopiado");
+      mensagem.style.display = "block";
       setTimeout(() => {
-        feedback.style.display = "none";
+        mensagem.style.display = "none";
       }, 2000);
     }
-  </script>
 
+    function enviarParaWhatsApp() {
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const whatsapp = document.getElementById("whatsapp").value;
+      const pagamento = document.getElementById("pagamento").value;
+
+      const formaTexto = pagamento === "cartao" ? "Cartão de Crédito (R$189,90)" :
+                         pagamento === "pix" ? "Pix (R$139,90)" : "Não informado";
+
+      const mensagem = `Olá, Gerli! 🦋%0AQuero iniciar minha jornada de cura:%0A%0A✨ Nome: ${nome}%0A📧 E-mail: ${email}%0A📱 WhatsApp: ${whatsapp}%0A💳 Forma de pagamento: ${formaTexto}`;
+
+      window.open(`https://wa.me/5546988252892?text=${mensagem}`, "_blank");
+    }
+
+    function pagarComCartao() {
+      // Aqui você pode adicionar o link de checkout do Mercado Pago
+      window.location.href = "https://www.mercadopago.com.br/checkout/v1/redirect?preference-id=2367760246-5b7eb243-2b49-4e52-9838-12aa62ce767b";
+    }
+  </script>
 </body>
 </html>
