@@ -139,7 +139,7 @@
 
   <header>
     <h1>✨ Bem-vinda ao seu momento de cura ✨</h1>
-    <p>Com carinho, Gerli D. Dalberto 🥋 A transformação começa no primeiro passo.</p>
+    <p>Com carinho, Gerli D. Dalberto 🦋 A transformação começa no primeiro passo.</p>
   </header>
 
   <form onsubmit="enviarWhatsApp(event)">
@@ -154,34 +154,14 @@
 
     <div id="pix-section" class="pix-box">
       <h3>✨ Pagamento via Pix ✨</h3>
-     <div class="pix-card">
-  <p>Use a chave Pix abaixo para realizar o pagamento:</p>
-  <div style="display: flex; gap: 0.5rem; align-items: center; justify-content: center; width: 100%;">
-    <input type="text" id="pix-code" value="46988252892" readonly style="flex: 1; padding: 0.5rem; border-radius: 0.75rem; border: 1px solid #ccc;" />
-    <button type="button" onclick="copiarChavePix()" style="padding: 0.5rem 1rem; border: none; background-color: #c96c9c; color: white; border-radius: 1rem; cursor: pointer;">Copiar</button>
-  </div>
-  <small id="copiado-feedback" class="copiado" style="display: none; color: #c96c9c; text-align: center; margin-top: 0.5rem;">Chave copiada com sucesso! 💜</small>
-</div>
-
-<script>
-  function copiarChavePix() {
-    const input = document.getElementById("pix-code");
-    input.select();
-    input.setSelectionRange(0, 99999); // Para dispositivos móveis
-    document.execCommand("copy");
-
-    const feedback = document.getElementById("copiado-feedback");
-    feedback.style.display = "block";
-
-    // Esconde a mensagem depois de 2 segundos
-    setTimeout(() => {
-      feedback.style.display = "none";
-    }, 2000);
-  }
-</script>
-
-  <small id="copiado-feedback" class="copiado">Chave copiada com sucesso! 💜</small>
-</div>
+      <div class="pix-card">
+        <p>Use a chave Pix abaixo para realizar o pagamento:</p>
+        <div style="display: flex; gap: 0.5rem; align-items: center; justify-content: center; width: 100%;">
+          <input type="text" id="pix-code" value="46988252892" readonly style="flex: 1; padding: 0.5rem; border-radius: 0.75rem; border: 1px solid #ccc;" />
+          <button type="button" onclick="copiarChavePix()" style="padding: 0.5rem 1rem; border: none; background-color: #c96c9c; color: white; border-radius: 1rem; cursor: pointer;">Copiar</button>
+        </div>
+        <small id="copiado-feedback" class="copiado">Chave copiada com sucesso! 💜</small>
+      </div>
     </div>
 
     <div id="botao-cartao" style="display:none;">
@@ -219,11 +199,15 @@
     function copiarChavePix() {
       const input = document.getElementById("pix-code");
       input.select();
+      input.setSelectionRange(0, 99999);
       document.execCommand("copy");
 
       const feedback = document.getElementById("copiado-feedback");
       feedback.style.display = "block";
-      setTimeout(() => feedback.style.display = "none", 2500);
+
+      setTimeout(() => {
+        feedback.style.display = "none";
+      }, 2000);
     }
   </script>
 
