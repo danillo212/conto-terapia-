@@ -155,12 +155,13 @@
     <div id="pix-section" class="pix-box">
       <h3>✨ Pagamento via Pix ✨</h3>
       <div class="pix-card">
-        <p>Escaneie o QR Code abaixo:</p>
-        <img id="qr-code" class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAAEE0lEQVR4nO2cTYrjMBCFX40NWcqQA/RRlBvMkYY5Ut/APkofoEFa" alt="QR Code Pix Gerli" />
-        <p>Ou copie a chave Pix:</p>
-        <input type="text" id="pix-code" value="46988252892" readonly onclick="copiarChavePix()" />
-        <small id="copiado-feedback" class="copiado">Chave copiada com sucesso! 💜</small>
-      </div>
+  <p>Use a chave Pix abaixo para realizar o pagamento:</p>
+  <div style="display: flex; gap: 0.5rem; align-items: center; justify-content: center; width: 100%;">
+    <input type="text" id="pix-code" value="46988252892" readonly style="flex: 1; padding: 0.5rem; border-radius: 0.75rem; border: 1px solid #ccc;" />
+    <button type="button" onclick="copiarChavePix()" style="padding: 0.5rem 1rem; border: none; background-color: #c96c9c; color: white; border-radius: 1rem; cursor: pointer;">Copiar</button>
+  </div>
+  <small id="copiado-feedback" class="copiado">Chave copiada com sucesso! 💜</small>
+</div>
     </div>
 
     <div id="botao-cartao" style="display:none;">
