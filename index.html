@@ -2,149 +2,169 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout Contoterapia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout Terapêutico - Contoterapia</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #fdf6f9;
-      color: #5e4b56;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-      animation: fadeIn 1.2s ease-in;
-    }
-    h1, h2 {
+      background: linear-gradient(to bottom, #fff6f9, #fefefe);
+      color: #444;
+      margin: 0;
+      padding: 0;
       text-align: center;
     }
-    h1 {
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
+
+    header {
+      padding: 2rem 1rem 1rem;
+      animation: fadeInDown 1s ease-out;
     }
-    h2 {
-      font-weight: normal;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #c96c9c;
     }
+
+    header p {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+
     form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
       max-width: 400px;
-      background: white;
+      margin: 0 auto;
+      background: #fff;
       padding: 2rem;
       border-radius: 1.5rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.2s ease-in-out;
     }
-    input, button, select {
+
+    input, select {
+      width: 100%;
       padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ddd;
       border-radius: 0.75rem;
-      border: 1px solid #ccc;
       font-size: 1rem;
     }
+
     button {
-      background-color: #f48fb1;
-      color: white;
+      padding: 0.75rem;
+      width: 100%;
+      margin-top: 1rem;
       border: none;
+      border-radius: 2rem;
+      background-color: #c96c9c;
+      color: white;
+      font-size: 1rem;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.3s ease;
     }
+
     button:hover {
-      background-color: #ec407a;
+      background-color: #a74f7f;
     }
-    #pix-section {
+
+    .pix-box {
       display: none;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      animation: fadeIn 0.6s ease-in;
     }
+
+    .pix-card {
+      background: #fff0f5;
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 10px rgba(255,192,203,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+      max-width: 350px;
+      width: 100%;
+    }
+
     .qr {
-      width: 200px;
-      height: 200px;
-      border: 1px solid #ddd;
-      border-radius: 1rem;
+      width: 180px;
+      height: 180px;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <h1>Bem-vinda ao seu momento de cura</h1>
-  <h2>“Com carinho, Gerli D. Dalberto 🦋 A transformação começa no primeiro passo.”</h2>
 
-  <form id="checkout-form">
-    <input type="text" id="name" placeholder="Seu nome" required />
+  <header>
+    <h1>✨ Bem-vinda ao seu momento de cura ✨</h1>
+    <p>Com carinho, Gerli D. Dalberto 🦋 A transformação começa no primeiro passo.</p>
+  </header>
+
+  <form onsubmit="enviarWhatsApp(event)">
+    <input type="text" id="nome" placeholder="Seu nome completo" required />
     <input type="email" id="email" placeholder="Seu e-mail" required />
-    <input type="tel" id="phone" placeholder="Seu WhatsApp" required />
+    <input type="tel" id="telefone" placeholder="Seu WhatsApp" required />
+    <select id="pagamento" onchange="mostrarFormaPagamento()" required>
+      <option value="">Selecione a forma de pagamento</option>
+      <option value="cartao">Cartão de Crédito (R$189,90)</option>
+      <option value="pix">Pix (R$139,90)</option>
+    </select>
 
-    <button type="button" onclick="pagarCartao()">Pagar com Cartão - R$ 189,90</button>
-    <button type="button" onclick="mostrarPix()">Pagar com Pix - R$ 139,90</button>
-
-    <div id="pix-section">
-      <p>Escaneie o QR Code abaixo ou copie a chave Pix:</p>
-      <img id="qr-code" class="qr" src="https://i.ibb.co/W56vncg/pix-gerli.png" alt="QR Code Pix Gerli" />
-      <input type="text" id="pix-code" value="46988252892" readonly />
+    <div id="pix-section" class="pix-box">
+      <h3>✨ Pagamento via Pix ✨</h3>
+      <div class="pix-card">
+        <p>Escaneie o QR Code abaixo:</p>
+        <img id="qr-code" class="qr" src="https://i.ibb.co/W56vncg/pix-gerli.png" alt="QR Code Pix Gerli" />
+        <p>Ou copie a chave Pix:</p>
+        <input type="text" id="pix-code" value="46988252892" readonly onclick="this.select()" />
+        <small>(Clique para copiar)</small>
+      </div>
     </div>
+
+    <div id="botao-cartao" style="display:none;">
+      <button type="button" onclick="pagarCartao()">Pagar com Cartão</button>
+    </div>
+
+    <button type="submit">Enviar meus dados no WhatsApp</button>
   </form>
 
   <script>
-    const ACCESS_TOKEN = 'APP_USR-2860911244778014-040510-a592d9a7cbef34f72ccf3b8949dec7ca-2367760246';
-
-    function enviarParaWhatsApp(nome, email, telefone, tipo) {
-      const mensagem = `Nova inscrição no Checkout Terapêutico:%0A🧘 Nome: ${nome}%0A📧 Email: ${email}%0A📱 WhatsApp: ${telefone}%0A💳 Método: ${tipo}`;
-      window.open(`https://wa.me/5546988252892?text=${mensagem}`, '_blank');
+    function mostrarFormaPagamento() {
+      const pagamento = document.getElementById('pagamento').value;
+      document.getElementById('pix-section').style.display = pagamento === 'pix' ? 'flex' : 'none';
+      document.getElementById('botao-cartao').style.display = pagamento === 'cartao' ? 'block' : 'none';
     }
 
-    async function pagarCartao() {
-      const nome = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const telefone = document.getElementById('phone').value;
+    function enviarWhatsApp(e) {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const telefone = document.getElementById("telefone").value;
+      const pagamento = document.getElementById("pagamento").value;
 
-      enviarParaWhatsApp(nome, email, telefone, "Cartão de Crédito");
+      const mensagem = `Olá Gerli! 💖\n\nQuero fazer a contoterapia!\n\nNome: ${nome}\nE-mail: ${email}\nWhatsApp: ${telefone}\nForma de pagamento: ${pagamento.toUpperCase()}`;
+      const url = `https://wa.me/5546988252892?text=${encodeURIComponent(mensagem)}`;
 
-      const preference = await fetch('https://api.mercadopago.com/checkout/preferences', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${ACCESS_TOKEN}`
-        },
-        body: JSON.stringify({
-          items: [{
-            title: '4 Sessões de Contoterapia',
-            quantity: 1,
-            unit_price: 189.90,
-            currency_id: 'BRL'
-          }],
-          back_urls: {
-            success: 'https://www.google.com',
-            failure: 'https://www.google.com'
-          },
-          auto_return: 'approved'
-        })
-      }).then(res => res.json());
-
-      window.location.href = preference.init_point;
+      window.open(url, "_blank");
     }
 
-    function mostrarPix() {
-      const nome = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const telefone = document.getElementById('phone').value.trim();
-
-      if (!nome || !email || !telefone) {
-        alert('Preencha todos os campos antes de continuar.');
-        return;
-      }
-
-      enviarParaWhatsApp(nome, email, telefone, "Pix");
-
-      document.getElementById('pix-section').style.display = 'flex';
+    function pagarCartao() {
+      const preferenceId = "replace_with_your_preference_id"; // ← Substitua aqui se usar checkout básico
+      const linkPagamento = "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=replace_with_preference_id"; // ou Checkout Pro se tiver
+      window.open(linkPagamento, "_blank");
     }
   </script>
+
 </body>
 </html>
