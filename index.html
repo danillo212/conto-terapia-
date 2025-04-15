@@ -1,262 +1,174 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gerli D. Dalberto | Terapias Integrativas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout Terapêutico</title>
   <style>
-    :root {
-      --primary-color: #ffc0cb;
-      --secondary-color: #ffffff;
-      --text-color: #333;
-      --background-gradient: linear-gradient(to bottom right, #fff5f8, #f5f9ff);
-    }
-
-    [data-theme="dark"] {
-      --primary-color: #ff9eb6;
-      --secondary-color: #1a1a1a;
-      --text-color: #f0f0f0;
-      --background-gradient: linear-gradient(to bottom right, #2a2a2a, #1a1a1a);
-    }
-
     body {
-      font-family: 'Quicksand', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--background-gradient);
-      color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff6f9;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.6s ease, color 0.6s ease;
-    }
-
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    .theme-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: var(--primary-color);
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 2rem;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .theme-toggle:hover {
-      background: #ff9eb6;
-      transform: rotate(15deg);
-    }
-
-    img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      margin-bottom: 1rem;
-      animation: fadeIn 2s ease;
-    }
-
-    h1, p {
-      text-align: center;
-      animation: fadeInDown 1.5s ease;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 30px;
+      margin: 0;
     }
 
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .menu {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      animation: fadeInUp 2s ease;
-    }
-
-    .menu button {
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.3s, background 0.3s;
-    }
-
-    .menu button:hover {
-      background: #ff9eb6;
-      transform: scale(1.1);
-    }
-
-    .description {
-      margin-top: 1rem;
+      font-size: 24px;
+      color: #c54d84;
       text-align: center;
-      min-height: 60px;
-      animation: fadeIn 1s ease;
-      max-width: 400px;
+      animation: fadeIn 1s ease-in-out;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-      width: 100%;
+    .subtext {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       max-width: 400px;
-      animation: fadeInUp 1.5s ease;
+      width: 100%;
+      text-align: center;
     }
 
     input, select {
-      padding: 0.75rem;
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
       border: 1px solid #ccc;
-      border-radius: 0.5rem;
+      font-size: 14px;
+    }
+
+    .button {
+      background-color: #c54d84;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 16px;
+      transition: 0.3s ease;
       width: 100%;
     }
 
-    button[type="submit"] {
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 1rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
+    .button:hover {
+      background-color: #a53d6c;
     }
 
-    button[type="submit"]:hover {
-      background: #ff9eb6;
-      transform: scale(1.05);
-    }
-
-    .thank-you {
+    .pix-section {
+      margin-top: 20px;
+      background-color: #ffeaf1;
+      border-radius: 16px;
+      padding: 20px;
       display: none;
-      text-align: center;
-      margin-top: 1rem;
-      color: var(--primary-color);
+    }
+
+    .copy-button {
+      background-color: #c54d84;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 25px;
+      width: 100%;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .copy-message {
+      display: none;
+      color: green;
+      margin-top: 10px;
+      font-size: 14px;
+      animation: fadeIn 0.5s ease-in-out;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-
 <body>
-  <div id="particles-js"></div>
+  <h1>✨ Bem-vinda ao seu momento de cura ✨</h1>
+  <p class="subtext">Com carinho, Gerli D. Dalberto 🦋 A transformação começa no primeiro passo.</p>
 
-  <button class="theme-toggle" onclick="toggleTheme()">🌗 Mudar Tema</button>
+  <div class="form-container">
+    <input type="text" id="nome" placeholder="Seu nome completo" />
+    <input type="email" id="email" placeholder="Seu e-mail" />
+    <input type="text" id="whatsapp" placeholder="Seu WhatsApp" />
+    
+    <select id="pagamento" onchange="exibirOpcaoPagamento()">
+      <option value="">Selecione a forma de pagamento</option>
+      <option value="cartao">Cartão de Crédito (R$347,00)</option>
+      <option value="pix">Pix (R$297,00)</option>
+    </select>
 
-  <img src="https://raw.githubusercontent.com/danillo212/checkout-contoterapia/main/public/gerli-avatar.png" alt="Gerli D. Dalberto">
-  <h1>Bem-vinda ao seu refúgio de cura ✨</h1>
-  <p>Com carinho, Gerli D. Dalberto 🦋 A transformação começa no primeiro passo.</p>
+    <!-- Botão WhatsApp -->
+    <button class="button" onclick="enviarParaWhatsApp()">Enviar meus dados no WhatsApp</button>
 
-  <div class="menu">
-    <button onclick="showDescription('constelacao')">Constelação Familiar</button>
-    <button onclick="showDescription('apometria')">Apometria Clínica</button>
-    <button onclick="showDescription('psicologia')">Psicologia</button>
-    <button onclick="showDescription('hipnose')">Hipnose Sistêmica</button>
-    <button onclick="showDescription('terapia')">Terapia Integrativa</button>
-    <button onclick="showDescription('reiki')">Reiki</button>
+    <!-- Botão de pagamento com cartão -->
+    <button class="button" id="botaoCartao" style="display:none;" onclick="pagarComCartao()">Pagar com Cartão</button>
+
+    <!-- Área do Pix -->
+    <div id="areaPix" class="pix-section">
+      <h3>✨ Pagamento via Pix ✨</h3>
+      <p>Use a chave Pix abaixo para realizar o pagamento:</p>
+      <input type="text" id="chavePix" value="46988252892" readonly />
+      <button class="copy-button" onclick="copiarChavePix()">Copiar</button>
+      <p class="copy-message" id="mensagemCopiado">✅ Chave Pix copiada com sucesso!</p>
+    </div>
   </div>
 
-  <div class="description" id="description">Selecione um atendimento para saber mais.</div>
-
-  <form id="contact-form">
-    <input type="text" id="name" placeholder="Seu nome" required>
-    <input type="tel" id="phone" placeholder="Seu telefone" required>
-    <input type="email" id="email" placeholder="Seu e-mail" required>
-    <select id="interest" required>
-      <option value="">Selecione o interesse</option>
-      <option value="Constelação Familiar">Constelação Familiar</option>
-      <option value="Apometria Clínica">Apometria Clínica</option>
-      <option value="Psicologia">Psicologia</option>
-      <option value="Hipnose Sistêmica">Hipnose Sistêmica</option>
-      <option value="Terapia Integrativa">Terapia Integrativa</option>
-      <option value="Reiki">Reiki</option>
-      <option value="Não tenho certeza">Não tenho certeza</option>
-    </select>
-    <button type="submit">Enviar</button>
-    <div class="thank-you" id="thank-you">Obrigado! Em breve entraremos em contato 💖</div>
-  </form>
-
   <script>
-    function toggleTheme() {
-      const currentTheme = document.body.getAttribute('data-theme');
-      document.body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+    function exibirOpcaoPagamento() {
+      const forma = document.getElementById("pagamento").value;
+      document.getElementById("botaoCartao").style.display = forma === "cartao" ? "block" : "none";
+      document.getElementById("areaPix").style.display = forma === "pix" ? "block" : "none";
     }
 
-    const descriptions = {
-      constelacao: 'A Constelação Familiar ajuda a revelar dinâmicas ocultas das relações familiares e a promover a cura.',
-      apometria: 'A Apometria Clínica trabalha níveis energéticos para equilibrar corpo e mente.',
-      psicologia: 'A Psicologia traz compreensão e ferramentas para lidar com desafios emocionais.',
-      hipnose: 'A Hipnose Sistêmica acessa a mente subconsciente para reprogramar padrões limitantes.',
-      terapia: 'A Terapia Integrativa une diversas técnicas para promover seu bem-estar.',
-      reiki: 'Reiki é uma técnica de cura energética que harmoniza corpo e espírito.'
-    };
+    function copiarChavePix() {
+      const chavePix = document.getElementById("chavePix");
+      chavePix.select();
+      chavePix.setSelectionRange(0, 99999);
+      document.execCommand("copy");
 
-    function showDescription(key) {
-      document.getElementById('description').innerText = descriptions[key];
-    }
-
-    document.getElementById('contact-form').addEventListener('submit', function (event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const interest = document.getElementById('interest').value;
-
-      if (!name || !phone || !email || !interest) {
-        alert('Por favor, preencha todos os campos obrigatórios.');
-        return;
-      }
-
-      const message = `Olá, meu nome é ${name}.\nTelefone: ${phone}\nE-mail: ${email}\nInteresse: ${interest}`;
-      const whatsappLink = `https://wa.me/5546988252892?text=${encodeURIComponent(message)}`;
-      window.open(whatsappLink, '_blank');
-
-      document.getElementById('thank-you').style.display = 'block';
+      const mensagem = document.getElementById("mensagemCopiado");
+      mensagem.style.display = "block";
       setTimeout(() => {
-        document.getElementById('thank-you').style.display = 'none';
-        document.getElementById('contact-form').reset();
-      }, 3000);
-    });
+        mensagem.style.display = "none";
+      }, 2000);
+    }
 
-    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json');
+    function enviarParaWhatsApp() {
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const whatsapp = document.getElementById("whatsapp").value;
+      const pagamento = document.getElementById("pagamento").value;
+
+      const formaTexto = pagamento === "cartao" ? "Cartão de Crédito (R$347,00)" :
+                         pagamento === "pix" ? "Pix (R$297,00)" : "Não informado";
+
+      const mensagem = `Olá, Gerli! 🦋%0AQuero iniciar minha jornada de cura:%0A%0A✨ Nome: ${nome}%0A📧 E-mail: ${email}%0A📱 WhatsApp: ${whatsapp}%0A💳 Forma de pagamento: ${formaTexto}`;
+
+      window.open(`https://wa.me/5546988252892?text=${mensagem}`, "_blank");
+    }
+
+    function pagarComCartao() {
+      // Aqui você pode adicionar o link de checkout do Mercado Pago
+      window.location.href = "https://www.mercadopago.com.br/checkout/v1/redirect?preference-id=SUA_PREFERENCE_ID";
+    }
   </script>
 </body>
 </html>
